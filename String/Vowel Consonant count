@@ -1,0 +1,20 @@
+package com.jacharat;
+
+public class VowelConsonantCount {
+	    public static void main(String[] args) {
+	        String input = "Education";
+	        int vowels = 0, consonants = 0;
+	        for (int i = 0; i < input.length(); i++) {
+	            char ch = Character.toLowerCase(input.charAt(i));
+	            switch (ch) {
+	                case 'a': case 'e': case 'i': case 'o': case 'u':
+	                    vowels++;
+	                    break;
+	                default:
+	                    if (ch >= 'a' && ch <= 'z') consonants++;
+	            }
+	        }
+	        System.out.println("Vowels = " + vowels + ", Consonants = " + consonants);
+	    }
+	}
+
