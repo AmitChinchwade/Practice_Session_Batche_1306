@@ -1,0 +1,21 @@
+package com.jacharat;
+
+public class CaseCountEmptyCheck {
+	    public static void main(String[] args) {
+	        String input = "JavaTrainer";
+	        int upper = 0, lower = 0;
+	        for (int i = 0; i < input.length(); i++) {
+	            char ch = input.charAt(i);
+	            if (ch >= 'A' && ch <= 'Z') upper++;
+	            else if (ch >= 'a' && ch <= 'z') lower++;
+	        }
+	        System.out.println("Uppercase = " + upper + ", Lowercase = " + lower);
+	        
+	        if (input.isEmpty()) {
+	            System.out.println("String is empty");
+	        } else {
+	            System.out.println("String is not empty");
+	        }
+	    }
+	}
+
