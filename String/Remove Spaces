@@ -1,0 +1,14 @@
+package com.jacharat;
+
+public class RemoveSpaces {
+    public static void main(String[] args) {
+        String input = "Java is powerful";
+        String result = "";
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != ' ') {
+                result += input.charAt(i);
+            }
+        }
+        System.out.println(result);
+    }
+}
