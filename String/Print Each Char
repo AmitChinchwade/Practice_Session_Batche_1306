@@ -1,0 +1,10 @@
+package com.jacharat;
+
+public class PrintEachChar {
+    public static void main(String[] args) {
+        String input = "Core";
+        for (int i = 0; i < input.length(); i++) {
+            System.out.println(input.charAt(i));
+        }
+    }
+}
