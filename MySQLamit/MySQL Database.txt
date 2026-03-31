@@ -1,0 +1,315 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| amitdb             |
+| ecommercesystem    |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql>
+mysql> mysql> select * from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> select * from orders' at line 1
+mysql> select * from orders;
+ERROR 1046 (3D000): No database selected
+mysql> use employee;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| emp                |
+| orders             |
++--------------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from orders;
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city   | product_name      | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune   | Dell Laptop       | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1002 | Priya Sharma    | Mumbai | Wireless Mouse    | Electronics |    850.00 |        2 | 2026-03-16 | Cash         | Pending   |
+|     1003 | Rahul Patil     | Pune   | iPhone 15         | Electronics |  75000.00 |        1 | 2026-03-17 | UPI          | Shipped   |
+|     1004 | Sneha Joshi     | Pune   | Samsung TV        | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1005 | Vikram Singh    | Mumbai | Headphones        | Electronics |   2500.00 |        1 | 2026-03-19 | Cash         | Delivered |
+|     1006 | Anita Desai     | Pune   | Gaming PC         | Electronics |  85000.00 |        1 | 2026-03-20 | EMI          | Pending   |
+|     1007 | Kiran More      | Mumbai | Keyboard          | Electronics |   1200.00 |        1 | 2026-03-21 | UPI          | Shipped   |
+|     1008 | Rohit Pawar     | Pune   | MacBook Pro       | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1009 | Meena Kadam     | Mumbai | Power Bank        | Electronics |    999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1010 | Sanjay Gavde    | Pune   | Refrigerator      | Appliances  |  35000.00 |        1 | 2026-03-24 | EMI          | Shipped   |
+|     1011 | Neha Rane       | Mumbai | Washing Machine   | Appliances  |  22000.00 |        1 | 2026-03-25 | UPI          | Pending   |
+|     1012 | Prakash Jadhav  | Pune   | AC Unit           | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
+|     1013 | Divya Salvi     | Mumbai | Bluetooth Speaker | Electronics |   1800.00 |        2 | 2026-03-27 | Cash         | Shipped   |
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+13 rows in set (0.00 sec)
+
+mysql> select * from orders where city = 'pune';
++----------+-----------------+------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city | product_name | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune | Dell Laptop  | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1003 | Rahul Patil     | Pune | iPhone 15    | Electronics |  75000.00 |        1 | 2026-03-17 | UPI          | Shipped   |
+|     1004 | Sneha Joshi     | Pune | Samsung TV   | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1006 | Anita Desai     | Pune | Gaming PC    | Electronics |  85000.00 |        1 | 2026-03-20 | EMI          | Pending   |
+|     1008 | Rohit Pawar     | Pune | MacBook Pro  | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1010 | Sanjay Gavde    | Pune | Refrigerator | Appliances  |  35000.00 |        1 | 2026-03-24 | EMI          | Shipped   |
+|     1012 | Prakash Jadhav  | Pune | AC Unit      | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
++----------+-----------------+------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> select * from orders where price > 5000;
++----------+-----------------+--------+-----------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city   | product_name    | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+--------+-----------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune   | Dell Laptop     | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1003 | Rahul Patil     | Pune   | iPhone 15       | Electronics |  75000.00 |        1 | 2026-03-17 | UPI          | Shipped   |
+|     1004 | Sneha Joshi     | Pune   | Samsung TV      | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1006 | Anita Desai     | Pune   | Gaming PC       | Electronics |  85000.00 |        1 | 2026-03-20 | EMI          | Pending   |
+|     1008 | Rohit Pawar     | Pune   | MacBook Pro     | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1010 | Sanjay Gavde    | Pune   | Refrigerator    | Appliances  |  35000.00 |        1 | 2026-03-24 | EMI          | Shipped   |
+|     1011 | Neha Rane       | Mumbai | Washing Machine | Appliances  |  22000.00 |        1 | 2026-03-25 | UPI          | Pending   |
+|     1012 | Prakash Jadhav  | Pune   | AC Unit         | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
++----------+-----------------+--------+-----------------+-------------+-----------+----------+------------+--------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> select * from orders where payment_mode = 'UPI';
++----------+---------------+--------+-----------------+-------------+----------+----------+------------+--------------+---------+
+| order_id | customer_name | city   | product_name    | category    | price    | quantity | order_date | payment_mode | status  |
++----------+---------------+--------+-----------------+-------------+----------+----------+------------+--------------+---------+
+|     1003 | Rahul Patil   | Pune   | iPhone 15       | Electronics | 75000.00 |        1 | 2026-03-17 | UPI          | Shipped |
+|     1007 | Kiran More    | Mumbai | Keyboard        | Electronics |  1200.00 |        1 | 2026-03-21 | UPI          | Shipped |
+|     1011 | Neha Rane     | Mumbai | Washing Machine | Appliances  | 22000.00 |        1 | 2026-03-25 | UPI          | Pending |
++----------+---------------+--------+-----------------+-------------+----------+----------+------------+--------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders where status = 'Delivered';
++----------+-----------------+--------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city   | product_name | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+--------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune   | Dell Laptop  | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1004 | Sneha Joshi     | Pune   | Samsung TV   | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1005 | Vikram Singh    | Mumbai | Headphones   | Electronics |   2500.00 |        1 | 2026-03-19 | Cash         | Delivered |
+|     1008 | Rohit Pawar     | Pune   | MacBook Pro  | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1009 | Meena Kadam     | Mumbai | Power Bank   | Electronics |    999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1012 | Prakash Jadhav  | Pune   | AC Unit      | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
++----------+-----------------+--------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders where quantity between 2 and 5;
++----------+---------------+--------+-------------------+-------------+---------+----------+------------+--------------+-----------+
+| order_id | customer_name | city   | product_name      | category    | price   | quantity | order_date | payment_mode | status    |
++----------+---------------+--------+-------------------+-------------+---------+----------+------------+--------------+-----------+
+|     1002 | Priya Sharma  | Mumbai | Wireless Mouse    | Electronics |  850.00 |        2 | 2026-03-16 | Cash         | Pending   |
+|     1009 | Meena Kadam   | Mumbai | Power Bank        | Electronics |  999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1013 | Divya Salvi   | Mumbai | Bluetooth Speaker | Electronics | 1800.00 |        2 | 2026-03-27 | Cash         | Shipped   |
++----------+---------------+--------+-------------------+-------------+---------+----------+------------+--------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders where category = 'Electronics' or 'Clothing';
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city   | product_name      | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune   | Dell Laptop       | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1002 | Priya Sharma    | Mumbai | Wireless Mouse    | Electronics |    850.00 |        2 | 2026-03-16 | Cash         | Pending   |
+|     1003 | Rahul Patil     | Pune   | iPhone 15         | Electronics |  75000.00 |        1 | 2026-03-17 | UPI          | Shipped   |
+|     1004 | Sneha Joshi     | Pune   | Samsung TV        | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1005 | Vikram Singh    | Mumbai | Headphones        | Electronics |   2500.00 |        1 | 2026-03-19 | Cash         | Delivered |
+|     1006 | Anita Desai     | Pune   | Gaming PC         | Electronics |  85000.00 |        1 | 2026-03-20 | EMI          | Pending   |
+|     1007 | Kiran More      | Mumbai | Keyboard          | Electronics |   1200.00 |        1 | 2026-03-21 | UPI          | Shipped   |
+|     1008 | Rohit Pawar     | Pune   | MacBook Pro       | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1009 | Meena Kadam     | Mumbai | Power Bank        | Electronics |    999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1013 | Divya Salvi     | Mumbai | Bluetooth Speaker | Electronics |   1800.00 |        2 | 2026-03-27 | Cash         | Shipped   |
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+10 rows in set, 1 warning (0.00 sec)
+
+mysql> select * from orders where customer_name = 'Amit Chinchwade';
++----------+-----------------+------+--------------+-------------+----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city | product_name | category    | price    | quantity | order_date | payment_mode | status    |
++----------+-----------------+------+--------------+-------------+----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune | Dell Laptop  | Electronics | 45000.00 |        1 | 2026-03-15 | Card         | Delivered |
++----------+-----------------+------+--------------+-------------+----------+----------+------------+--------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders where product_name = 'iPhone 15';
++----------+---------------+------+--------------+-------------+----------+----------+------------+--------------+---------+
+| order_id | customer_name | city | product_name | category    | price    | quantity | order_date | payment_mode | status  |
++----------+---------------+------+--------------+-------------+----------+----------+------------+--------------+---------+
+|     1003 | Rahul Patil   | Pune | iPhone 15    | Electronics | 75000.00 |        1 | 2026-03-17 | UPI          | Shipped |
++----------+---------------+------+--------------+-------------+----------+----------+------------+--------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select sum(price quantity) as totalRevenue from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'quantity) as totalRevenue from orders' at line 1
+mysql> select sum(price * quantity) as totalRevenue from orders;
++--------------+
+| totalRevenue |
++--------------+
+|    505997.00 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(price* quantity) from orders;
++----------------------+
+| sum(price* quantity) |
++----------------------+
+|            505997.00 |
++----------------------+
+1 row in set (0.03 sec)
+
+mysql> select * from orders;
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city   | product_name      | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune   | Dell Laptop       | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1002 | Priya Sharma    | Mumbai | Wireless Mouse    | Electronics |    850.00 |        2 | 2026-03-16 | Cash         | Pending   |
+|     1003 | Rahul Patil     | Pune   | iPhone 15         | Electronics |  75000.00 |        1 | 2026-03-17 | UPI          | Shipped   |
+|     1004 | Sneha Joshi     | Pune   | Samsung TV        | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1005 | Vikram Singh    | Mumbai | Headphones        | Electronics |   2500.00 |        1 | 2026-03-19 | Cash         | Delivered |
+|     1006 | Anita Desai     | Pune   | Gaming PC         | Electronics |  85000.00 |        1 | 2026-03-20 | EMI          | Pending   |
+|     1007 | Kiran More      | Mumbai | Keyboard          | Electronics |   1200.00 |        1 | 2026-03-21 | UPI          | Shipped   |
+|     1008 | Rohit Pawar     | Pune   | MacBook Pro       | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1009 | Meena Kadam     | Mumbai | Power Bank        | Electronics |    999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1010 | Sanjay Gavde    | Pune   | Refrigerator      | Appliances  |  35000.00 |        1 | 2026-03-24 | EMI          | Shipped   |
+|     1011 | Neha Rane       | Mumbai | Washing Machine   | Appliances  |  22000.00 |        1 | 2026-03-25 | UPI          | Pending   |
+|     1012 | Prakash Jadhav  | Pune   | AC Unit           | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
+|     1013 | Divya Salvi     | Mumbai | Bluetooth Speaker | Electronics |   1800.00 |        2 | 2026-03-27 | Cash         | Shipped   |
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+13 rows in set (0.00 sec)
+
+mysql> select * from orders where price between 500 and 5000 ;
++----------+---------------+--------+-------------------+-------------+---------+----------+------------+--------------+-----------+
+| order_id | customer_name | city   | product_name      | category    | price   | quantity | order_date | payment_mode | status    |
++----------+---------------+--------+-------------------+-------------+---------+----------+------------+--------------+-----------+
+|     1002 | Priya Sharma  | Mumbai | Wireless Mouse    | Electronics |  850.00 |        2 | 2026-03-16 | Cash         | Pending   |
+|     1005 | Vikram Singh  | Mumbai | Headphones        | Electronics | 2500.00 |        1 | 2026-03-19 | Cash         | Delivered |
+|     1007 | Kiran More    | Mumbai | Keyboard          | Electronics | 1200.00 |        1 | 2026-03-21 | UPI          | Shipped   |
+|     1009 | Meena Kadam   | Mumbai | Power Bank        | Electronics |  999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1013 | Divya Salvi   | Mumbai | Bluetooth Speaker | Electronics | 1800.00 |        2 | 2026-03-27 | Cash         | Shipped   |
++----------+---------------+--------+-------------------+-------------+---------+----------+------------+--------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from orders where order_date between 2026-03-21 and 2026-03-27 ;
+Empty set, 2 warnings (0.03 sec)
+
+mysql> select * from orders where order_date between '2026-03-21' and '2026-03-27' ;
++----------+----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name  | city   | product_name      | category    | price     | quantity | order_date | payment_mode | status    |
++----------+----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1007 | Kiran More     | Mumbai | Keyboard          | Electronics |   1200.00 |        1 | 2026-03-21 | UPI          | Shipped   |
+|     1008 | Rohit Pawar    | Pune   | MacBook Pro       | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1009 | Meena Kadam    | Mumbai | Power Bank        | Electronics |    999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1010 | Sanjay Gavde   | Pune   | Refrigerator      | Appliances  |  35000.00 |        1 | 2026-03-24 | EMI          | Shipped   |
+|     1011 | Neha Rane      | Mumbai | Washing Machine   | Appliances  |  22000.00 |        1 | 2026-03-25 | UPI          | Pending   |
+|     1012 | Prakash Jadhav | Pune   | AC Unit           | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
+|     1013 | Divya Salvi    | Mumbai | Bluetooth Speaker | Electronics |   1800.00 |        2 | 2026-03-27 | Cash         | Shipped   |
++----------+----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> select sum(price* quantity) from orders;
++----------------------+
+| sum(price* quantity) |
++----------------------+
+|            505997.00 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(price* quantity) from orders;
++----------------------+
+| sum(price* quantity) |
++----------------------+
+|            505997.00 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(price * quantity) as totalRevenue from orders;
++--------------+
+| totalRevenue |
++--------------+
+|    505997.00 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders where order_id and status between '1001' and '1013' ;
+Empty set (0.00 sec)
+
+mysql> select * from orders where order_id and status between 1001 and 1013 ;
+Empty set, 13 warnings (0.00 sec)
+
+mysql> show * from orders where order_id and status between 1001 and 1013 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* from orders where order_id and status between 1001 and 1013' at line 1
+mysql> select * from orders where status = 'Delivered';
++----------+-----------------+--------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city   | product_name | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+--------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune   | Dell Laptop  | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1004 | Sneha Joshi     | Pune   | Samsung TV   | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1005 | Vikram Singh    | Mumbai | Headphones   | Electronics |   2500.00 |        1 | 2026-03-19 | Cash         | Delivered |
+|     1008 | Rohit Pawar     | Pune   | MacBook Pro  | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1009 | Meena Kadam     | Mumbai | Power Bank   | Electronics |    999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1012 | Prakash Jadhav  | Pune   | AC Unit      | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
++----------+-----------------+--------+--------------+-------------+-----------+----------+------------+--------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city   | product_name      | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune   | Dell Laptop       | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1002 | Priya Sharma    | Mumbai | Wireless Mouse    | Electronics |    850.00 |        2 | 2026-03-16 | Cash         | Pending   |
+|     1003 | Rahul Patil     | Pune   | iPhone 15         | Electronics |  75000.00 |        1 | 2026-03-17 | UPI          | Shipped   |
+|     1004 | Sneha Joshi     | Pune   | Samsung TV        | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1005 | Vikram Singh    | Mumbai | Headphones        | Electronics |   2500.00 |        1 | 2026-03-19 | Cash         | Delivered |
+|     1006 | Anita Desai     | Pune   | Gaming PC         | Electronics |  85000.00 |        1 | 2026-03-20 | EMI          | Pending   |
+|     1007 | Kiran More      | Mumbai | Keyboard          | Electronics |   1200.00 |        1 | 2026-03-21 | UPI          | Shipped   |
+|     1008 | Rohit Pawar     | Pune   | MacBook Pro       | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1009 | Meena Kadam     | Mumbai | Power Bank        | Electronics |    999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1010 | Sanjay Gavde    | Pune   | Refrigerator      | Appliances  |  35000.00 |        1 | 2026-03-24 | EMI          | Shipped   |
+|     1011 | Neha Rane       | Mumbai | Washing Machine   | Appliances  |  22000.00 |        1 | 2026-03-25 | UPI          | Pending   |
+|     1012 | Prakash Jadhav  | Pune   | AC Unit           | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
+|     1013 | Divya Salvi     | Mumbai | Bluetooth Speaker | Electronics |   1800.00 |        2 | 2026-03-27 | Cash         | Shipped   |
++----------+-----------------+--------+-------------------+-------------+-----------+----------+------------+--------------+-----------+
+13 rows in set (0.00 sec)
+
+mysql> delete from orders where order_id = 1013;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from orders;
++----------+-----------------+--------+-----------------+-------------+-----------+----------+------------+--------------+-----------+
+| order_id | customer_name   | city   | product_name    | category    | price     | quantity | order_date | payment_mode | status    |
++----------+-----------------+--------+-----------------+-------------+-----------+----------+------------+--------------+-----------+
+|     1001 | Amit Chinchwade | Pune   | Dell Laptop     | Electronics |  45000.00 |        1 | 2026-03-15 | Card         | Delivered |
+|     1002 | Priya Sharma    | Mumbai | Wireless Mouse  | Electronics |    850.00 |        2 | 2026-03-16 | Cash         | Pending   |
+|     1003 | Rahul Patil     | Pune   | iPhone 15       | Electronics |  75000.00 |        1 | 2026-03-17 | UPI          | Shipped   |
+|     1004 | Sneha Joshi     | Pune   | Samsung TV      | Electronics |  65000.00 |        1 | 2026-03-18 | Card         | Delivered |
+|     1005 | Vikram Singh    | Mumbai | Headphones      | Electronics |   2500.00 |        1 | 2026-03-19 | Cash         | Delivered |
+|     1006 | Anita Desai     | Pune   | Gaming PC       | Electronics |  85000.00 |        1 | 2026-03-20 | EMI          | Pending   |
+|     1007 | Kiran More      | Mumbai | Keyboard        | Electronics |   1200.00 |        1 | 2026-03-21 | UPI          | Shipped   |
+|     1008 | Rohit Pawar     | Pune   | MacBook Pro     | Electronics | 125000.00 |        1 | 2026-03-22 | Card         | Delivered |
+|     1009 | Meena Kadam     | Mumbai | Power Bank      | Electronics |    999.00 |        3 | 2026-03-23 | Cash         | Delivered |
+|     1010 | Sanjay Gavde    | Pune   | Refrigerator    | Appliances  |  35000.00 |        1 | 2026-03-24 | EMI          | Shipped   |
+|     1011 | Neha Rane       | Mumbai | Washing Machine | Appliances  |  22000.00 |        1 | 2026-03-25 | UPI          | Pending   |
+|     1012 | Prakash Jadhav  | Pune   | AC Unit         | Appliances  |  42000.00 |        1 | 2026-03-26 | Card         | Delivered |
++----------+-----------------+--------+-----------------+-------------+-----------+----------+------------+--------------+-----------+
+12 rows in set (0.00 sec)
+
+mysql> select * from where order_id = '1001' OR status = 'Delivered' ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where order_id = '1001' OR status = 'Delivered'' at line 1
+mysql> exit;
