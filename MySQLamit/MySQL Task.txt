@@ -1,0 +1,274 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| amitdb             |
+| ecommercesystem    |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.09 sec)
+
+mysql> use employee;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| emp                |
+| orders             |
++--------------------+
+2 rows in set (0.01 sec)
+
+mysql> CREATE TABLE orders(order_id INT PRIMARY KEY,order_name VARCHAR(20),order_date DATE,status VARCHAR(20));
+ERROR 1050 (42S01): Table 'orders' already exists
+mysql> CREATE TABLE orderss(order_id INT PRIMARY KEY,order_name VARCHAR(20),order_date DATE,status VARCHAR(20));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql>
+mysql> INSERT INTO orderss VALUES
+    -> (1, 'Amit', '22-07-2025', 'Delivered'),
+    -> (2, 'Samarth', '12-04-2024', 'Pending'),
+    -> (3, 'Siddhi', '20-03-2023','Shipped'),
+    -> (4, 'Sairaj', '06-08-2023','Shipped'),
+    -> (5, 'Yashraj', '16-12-2023','Shipped');
+ERROR 1292 (22007): Incorrect date value: '22-07-2025' for column 'order_date' at row 1
+mysql> (1, 'Amit', '22-07-2025', 'Delivered');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1, 'Amit', '22-07-2025', 'Delivered')' at line 1
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| amitdb             |
+| ecommercesystem    |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| emp                |
+| orders             |
+| orderss            |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> use orderss;
+ERROR 1049 (42000): Unknown database 'orderss'
+mysql> select * from orderss;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO orders (OrderId, OrderName, Date, Status) VALUES
+    -> (1, 'Amit', '22-07-2025', 'Delivered'),
+    -> (2, 'Samarth', '12-04-2024', 'Pending'),
+    -> (3, 'Siddhi', '20-03-2023','Shipped'),
+    -> (4, 'Sairaj', '06-08-2023','Shipped'),
+    -> (5, 'Yashraj', '16-12-2023','Shipped');
+ERROR 1054 (42S22): Unknown column 'OrderId' in 'field list'
+mysql> INSERT INTO orders (Order_id, Order_name, Date, Status) VALUES
+    -> (1, 'Amit', '22-07-2025', 'Delivered'),
+    -> (2, 'Samarth', '12-04-2024', 'Pending'),
+    -> (3, 'Siddhi', '20-03-2023','Shipped'),
+    -> (4, 'Sairaj', '06-08-2023','Shipped'),
+    -> (5, 'Yashraj', '16-12-2023','Shipped');
+ERROR 1054 (42S22): Unknown column 'Order_name' in 'field list'
+mysql>
+mysql> INSERT INTO orders (order_id, order_name, Date, Status) VALUES
+    -> (1, 'Amit', '22-07-2025', 'Delivered'),
+    -> (2, 'Samarth', '12-04-2024', 'Pending'),
+    -> (3, 'Siddhi', '20-03-2023','Shipped'),
+    -> (4, 'Sairaj', '06-08-2023','Shipped'),
+    -> (5, 'Yashraj', '16-12-2023','Shipped');
+ERROR 1054 (42S22): Unknown column 'order_name' in 'field list'
+mysql>
+mysql> INSERT INTO Orderss (Order_Id, Order_Name, Date, Status) VALUES
+    -> (101, 'Amit   ', '2026-04-01', 'Delivered'),
+    -> (102, 'Samarth', '12-04-2024', 'Pending'),
+    -> (103, 'Siddhi ', '20-03-2023','Shipped'),
+    -> (104, 'Sairaj ', '06-08-2023','Shipped'),
+    -> (105, 'Yashraj' , '16-12-2023','Shipped');
+ERROR 1054 (42S22): Unknown column 'Date' in 'field list'
+mysql> INSERT INTO Orderss (Order_Id, Order_Name,order_Date, Status) VALUES
+    -> (101, 'Amit   ', '2026-04-01', 'Delivered'),
+    -> (102, 'Samarth', '12-04-2024', 'Pending'),
+    -> (103, 'Siddhi ', '20-03-2023','Shipped'),
+    -> (104, 'Sairaj ', '06-08-2023','Shipped'),
+    -> (105, 'Yashraj' , '16-12-2023','Shipped');
+ERROR 1292 (22007): Incorrect date value: '12-04-2024' for column 'order_date' at row 2
+mysql> desc orderss;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| order_id   | int         | NO   | PRI | NULL    |       |
+| order_name | varchar(20) | YES  |     | NULL    |       |
+| order_date | date        | YES  |     | NULL    |       |
+| status     | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> INSERT INTO orderss  ( order_id, order_name,order_date, Status) VALUES
+    -> (101, 'Amit   ', '2026-04-01' , 'Delivered'),
+    -> (102, 'Samarth', '2024-03-20' , 'Pending'),
+    -> (103, 'Siddhi ', '2023-08-15' , 'Shipped'),
+    -> (104, 'Sairaj ', '2025-05-10' , 'Shipped'),
+    -> (105, 'Yashraj', '2022-09-30' , 'Shipped');
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql>  select * from orderss;
++----------+------------+------------+-----------+
+| order_id | order_name | order_date | status    |
++----------+------------+------------+-----------+
+|      101 | Amit       | 2026-04-01 | Delivered |
+|      102 | Samarth    | 2024-03-20 | Pending   |
+|      103 | Siddhi     | 2023-08-15 | Shipped   |
+|      104 | Sairaj     | 2025-05-10 | Shipped   |
+|      105 | Yashraj    | 2022-09-30 | Shipped   |
++----------+------------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Product(product_id INT PRIMARY KEY,product_name VARCHAR(20),price DECIMAL(10,2),quantity INT,manf_date DATE,type VARCHAR(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| emp                |
+| orders             |
+| orderss            |
+| product            |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO Product( product_id, product_name, price , quantity , manf_date, type) VALUES
+    -> (1401, 'MamaEarth ',369.00,5, '2026-04-01'  , 'FaceWash'),
+    -> (1052, 'Foxtail   ',449.00,8, '2024-03-20'  , 'FaceWash'),
+    -> (1703, 'Pliex     ',399.00,4, '2023-08-15'  , 'BodyWash'),
+    -> (1654, 'Gharsoap  ',299.00,6, '2025-05-10'  , 'BodyWash'),
+    -> (1785, 'Dove      ',199.00,2, '2022-09-30'  , 'FaceWash');
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql>  select * from Product;
++------------+--------------+--------+----------+------------+----------+
+| product_id | product_name | price  | quantity | manf_date  | type     |
++------------+--------------+--------+----------+------------+----------+
+|       1052 | Foxtail      | 449.00 |        8 | 2024-03-20 | FaceWash |
+|       1401 | MamaEarth    | 369.00 |        5 | 2026-04-01 | FaceWash |
+|       1654 | Gharsoap     | 299.00 |        6 | 2025-05-10 | BodyWash |
+|       1703 | Pliex        | 399.00 |        4 | 2023-08-15 | BodyWash |
+|       1785 | Dove         | 199.00 |        2 | 2022-09-30 | FaceWash |
++------------+--------------+--------+----------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Customer (
+    ->     CustomerId INT PRIMARY KEY,
+    ->     CusName VARCHAR(50),
+    ->     email VARCHAR(100),
+    ->     mobNo VARCHAR(15),
+    ->     address VARCHAR(200),
+    ->     country VARCHAR(50),
+    ->     state VARCHAR(50),
+    ->     paymentMode VARCHAR(30),
+    ->     status VARCHAR(20),
+    ->     orderId INT,
+    ->     ProductId INT,
+    ->     FOREIGN KEY (orderId) REFERENCES Orders(OrderId),
+    ->     FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
+    -> );
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'OrderId' for constraint 'customer_ibfk_1' in the referenced table 'orders'
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| emp                |
+| orders             |
+| orderss            |
+| product            |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Customer (CustomerId INT PRIMARY KEY,CusName VARCHAR(50),email VARCHAR(100),mobNo VARCHAR(15),address VARCHAR(200),country VARCHAR(50),state VARCHAR(50),paymentMode VARCHAR(30),status VARCHAR(20),orderId INT,ProductId INT, Orders(OrderId), Product(ProductId));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(OrderId), Product(ProductId))' at line 1
+mysql>
+mysql> CREATE TABLE Customer (CustomerId INT PRIMARY KEY,CusName VARCHAR(50),email VARCHAR(100),mobNo VARCHAR(15),address VARCHAR(200),country VARCHAR(50),state VARCHAR(50),paymentMode VARCHAR(30),status VARCHAR(20),orderId INT,ProductId INT);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| customer           |
+| emp                |
+| orders             |
+| orderss            |
+| product            |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> desc customer;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| CustomerId  | int          | NO   | PRI | NULL    |       |
+| CusName     | varchar(50)  | YES  |     | NULL    |       |
+| email       | varchar(100) | YES  |     | NULL    |       |
+| mobNo       | varchar(15)  | YES  |     | NULL    |       |
+| address     | varchar(200) | YES  |     | NULL    |       |
+| country     | varchar(50)  | YES  |     | NULL    |       |
+| state       | varchar(50)  | YES  |     | NULL    |       |
+| paymentMode | varchar(30)  | YES  |     | NULL    |       |
+| status      | varchar(20)  | YES  |     | NULL    |       |
+| orderId     | int          | YES  |     | NULL    |       |
+| ProductId   | int          | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+11 rows in set (0.03 sec)
+
+mysql> INSERT INTO Customer (CustomerId, CusName , email, mobNo , address , country ,state, paymentMode , status , orderId , ProductId) VALUES
+    -> (1, 'Amit chinchwade','amit@gmail.com', '9876543210', 'Pune', 'India', 'Maharashtra', 'Card', 'Active', 101, 1),
+    -> (2, 'Priya sharma',   'priya@gmail.com', '9876543211', 'Mumbai', 'India', 'Maharashtra', 'UPI', 'DeActive', 102, 2),
+    -> (3, 'Siddhi patil',   'siddhi@gmail.com', '9886543212', 'Gurugram', 'India', 'Delhi', 'Cash', 'Active', 103, 3);
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> (4, 'Raj awate'   ,   'raj@gmail.com', '9876563212', 'Nashik', 'India', 'Maharashtra', 'UPI', 'DeActive', 104, 4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '4, 'Raj awate'   ,   'raj@gmail.com', '9876563212', 'Nashik', 'India', 'Maharash' at line 1
+mysql> (5, 'Rahul yadav ',   'rahul@gmail.com', '9873543212', 'Kolhapur', 'India', 'Maharashtra', 'Cash', 'Active', 105, 5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '5, 'Rahul yadav ',   'rahul@gmail.com', '9873543212', 'Kolhapur', 'India', 'Maha' at line 1
+mysql>
+mysql> (4, 'Raj awate'   ,   'raj@gmail.com', '9876563212', 'Nashik', 'India', 'Maharashtra', 'UPI', 'DeActive', 104, 4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '4, 'Raj awate'   ,   'raj@gmail.com', '9876563212', 'Nashik', 'India', 'Maharash' at line 1
+mysql>  select * from Customer;
++------------+-----------------+------------------+------------+----------+---------+-------------+-------------+----------+---------+-----------+
+| CustomerId | CusName         | email            | mobNo      | address  | country | state       | paymentMode | status   | orderId | ProductId |
++------------+-----------------+------------------+------------+----------+---------+-------------+-------------+----------+---------+-----------+
+|          1 | Amit chinchwade | amit@gmail.com   | 9876543210 | Pune     | India   | Maharashtra | Card        | Active   |     101 |         1 |
+|          2 | Priya sharma    | priya@gmail.com  | 9876543211 | Mumbai   | India   | Maharashtra | UPI         | DeActive |     102 |         2 |
+|          3 | Siddhi patil    | siddhi@gmail.com | 9886543212 | Gurugram | India   | Delhi       | Cash        | Active   |     103 |         3 |
++------------+-----------------+------------------+------------+----------+---------+-------------+-------------+----------+---------+-----------+
+3 rows in set (0.03 sec)
+
+mysql> exist;
